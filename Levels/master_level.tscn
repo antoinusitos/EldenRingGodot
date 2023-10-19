@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2qcx4noq135f"]
+
+[ext_resource type="Script" path="res://Scripts/MasterLevel.cs" id="1_6hykp"]
+[ext_resource type="PackedScene" uid="uid://dqh8rrhsgacdu" path="res://Levels/Main_Menu_Level.tscn" id="1_spqx8"]
+[ext_resource type="Script" path="res://Scripts/MultiplayerManager.cs" id="3_3gie7"]
+[ext_resource type="PackedScene" uid="uid://db5o5abxwrhqt" path="res://Prefabs/world_save_game_manager.tscn" id="4_846hc"]
+[ext_resource type="PackedScene" uid="uid://bus3eg080p566" path="res://Prefabs/new_player.tscn" id="4_mk4q3"]
+
+[node name="MasterLevel" type="Node3D"]
+script = ExtResource("3_3gie7")
+playerPrefab = ExtResource("4_mk4q3")
+
+[node name="DONTDESTROY" type="Node3D" parent="." node_paths=PackedStringArray("startingLevel")]
+script = ExtResource("1_6hykp")
+startingLevel = NodePath("../Main_Menu_Level")
+
+[node name="WorldSaveGameManager" parent="DONTDESTROY" instance=ExtResource("4_846hc")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Prefabs/new_player.tscn")
+spawn_path = NodePath("..")
+
+[node name="Main_Menu_Level" parent="." instance=ExtResource("1_spqx8")]

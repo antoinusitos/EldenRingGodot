@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bus3eg080p566"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterManager.cs" id="1_7xfbu"]
+[ext_resource type="PackedScene" uid="uid://d2a5k2ot2gdra" path="res://Models/Md_Char_Low_Poly_Man.fbx" id="1_fbfpe"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p4o10"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
+[node name="NewPlayer" type="CharacterBody3D"]
+script = ExtResource("1_7xfbu")
+
+[node name="Md_Char_Low_Poly_Man" parent="." instance=ExtResource("1_fbfpe")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_p4o10")

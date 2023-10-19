@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqh8rrhsgacdu"]
+
+[ext_resource type="PackedScene" uid="uid://5owlr31kmngg" path="res://UI/TitleScreen.tscn" id="1_2wujx"]
+[ext_resource type="PackedScene" uid="uid://5gxhtpw5egqg" path="res://Prefabs/title_screen_manager.tscn" id="2_luqn6"]
+
+[node name="Main_Menu_Level" type="Node3D"]
+
+[node name="TitleScreen" parent="." instance=ExtResource("1_2wujx")]
+
+[node name="TitleScreenManager" parent="." instance=ExtResource("2_luqn6")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.17053)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://db5o5abxwrhqt"]
+
+[ext_resource type="Script" path="res://Scripts/WorldSaveGameManager.cs" id="1_w6lto"]
+
+[node name="WorldSaveGameManager" type="Node3D"]
+script = ExtResource("1_w6lto")

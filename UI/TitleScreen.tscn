@@ -1,0 +1,142 @@
+[gd_scene load_steps=9 format=3 uid="uid://5owlr31kmngg"]
+
+[ext_resource type="Script" path="res://Scripts/PressStartButton.cs" id="1_hlbdq"]
+[ext_resource type="Script" path="res://Scripts/JoinGameButton.cs" id="2_11qqg"]
+[ext_resource type="Script" path="res://Scripts/NewGameButton.cs" id="2_uvsus"]
+
+[sub_resource type="Gradient" id="Gradient_owhwm"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v7a4a"]
+gradient = SubResource("Gradient_owhwm")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dbgcg"]
+font_size = 110
+
+[sub_resource type="Theme" id="Theme_bn1is"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aboji"]
+bg_color = Color(0.231373, 0.231373, 0.231373, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_v7a4a")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.0
+offset_top = 83.435
+offset_right = 174.0
+offset_bottom = 166.435
+grow_horizontal = 2
+text = "ELDEN RING SERIE"
+label_settings = SubResource("LabelSettings_dbgcg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PressStartButton" type="Button" parent="." node_paths=PackedStringArray("TitleScreenMainMenuPanel")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -148.0
+offset_right = 93.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_bn1is")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aboji")
+script = ExtResource("1_hlbdq")
+TitleScreenMainMenuPanel = NodePath("../TitleScreenMainMenu")
+
+[node name="Label" type="Label" parent="PressStartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESS START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="." node_paths=PackedStringArray("UIRoot")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -90.865
+offset_right = 93.0
+offset_bottom = -58.8649
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_bn1is")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aboji")
+script = ExtResource("2_11qqg")
+UIRoot = NodePath("..")
+
+[node name="Label" type="Label" parent="JoinGameButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Join Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleScreenMainMenu" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+
+[node name="NewGameButton" type="Button" parent="TitleScreenMainMenu" node_paths=PackedStringArray("UIRoot")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 484.0
+offset_top = 500.0
+offset_right = 669.0
+offset_bottom = 532.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_bn1is")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aboji")
+script = ExtResource("2_uvsus")
+UIRoot = NodePath("../..")
+
+[node name="Label" type="Label" parent="TitleScreenMainMenu/NewGameButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
