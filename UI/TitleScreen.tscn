@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://5owlr31kmngg"]
 
-[ext_resource type="Script" path="res://Scripts/PressStartButton.cs" id="1_hlbdq"]
-[ext_resource type="Script" path="res://Scripts/JoinGameButton.cs" id="2_11qqg"]
-[ext_resource type="Script" path="res://Scripts/NewGameButton.cs" id="2_uvsus"]
+[ext_resource type="Script" path="res://Scripts/Menu Scene/Main Menu/PressStartButton.cs" id="1_hlbdq"]
+[ext_resource type="Script" path="res://Scripts/Menu Scene/Main Menu/JoinGameButton.cs" id="2_11qqg"]
+[ext_resource type="Script" path="res://Scripts/Menu Scene/Main Menu/NewGameButton.cs" id="2_uvsus"]
 
 [sub_resource type="Gradient" id="Gradient_owhwm"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
