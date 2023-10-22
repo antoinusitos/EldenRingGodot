@@ -5,6 +5,11 @@ public partial class PlayerInputManager : Node3D
 {
 	public static PlayerInputManager instance = null;
 
+	private Vector2 movementInput = Vector2.Zero;
+	public float verticalInput = 0;
+	public float horizontalInput = 0;
+	public float moveAmount = 0;
+
     public override void _EnterTree()
     {
         if(instance == null)
@@ -25,5 +30,25 @@ public partial class PlayerInputManager : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		movementInput = Input.GetVector("MovementLeft", "MovementRight", "MovementUp", "MovementDown");
+
+		HandleMovementInput();
+	}
+
+	private void HandleMovementInput()
+	{
+		verticalInput = movementInput.Y;
+		horizontalInput = movementInput.X;
+
+		moveAmount = Mathf.Clamp(Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput), 0f, 1f);
+
+		if(moveAmount <= 0.5f && moveAmount > 0)
+		{
+			moveAmount = 0.5f;
+		}
+		else if(moveAmount >= 0.5f && moveAmount <= 1)
+		{
+			moveAmount = 1.0f;
+		}
 	}
 }

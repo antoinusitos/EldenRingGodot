@@ -8,6 +8,3 @@
 [node name="TitleScreen" parent="." instance=ExtResource("1_2wujx")]
 
 [node name="TitleScreenManager" parent="." instance=ExtResource("2_luqn6")]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.17053)
