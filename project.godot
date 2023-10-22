@@ -18,3 +18,22 @@ config/icon="res://TESTS/icon.svg"
 [dotnet]
 
 project/assembly_name="TestAnim"
+
+[input]
+
+MovementUp={
+"deadzone": 0.5,
+"events": []
+}
+MovementDown={
+"deadzone": 0.5,
+"events": []
+}
+MovementRight={
+"deadzone": 0.5,
+"events": []
+}
+MovementLeft={
+"deadzone": 0.5,
+"events": []
+}

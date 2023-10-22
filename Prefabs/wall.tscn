@@ -1,0 +1,116 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt1aqn57sbqco"]
+
+[ext_resource type="Material" uid="uid://tcr50cdqgeae" path="res://Materials/GridMaterial.tres" id="1_gu5ap"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cxenr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ivole"]
+
+[node name="Wall" type="Node3D"]
+
+[node name="Box" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box2/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+skeleton = NodePath("../Box2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box3/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+skeleton = NodePath("../Box2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box4/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+skeleton = NodePath("../Box2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box5/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box6/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box7/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+skeleton = NodePath("../Box2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box8/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+skeleton = NodePath("../Box2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box9/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")
+
+[node name="Box10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+material_override = ExtResource("1_gu5ap")
+mesh = SubResource("BoxMesh_cxenr")
+skeleton = NodePath("../Box2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box10/StaticBody3D"]
+shape = SubResource("BoxShape3D_ivole")

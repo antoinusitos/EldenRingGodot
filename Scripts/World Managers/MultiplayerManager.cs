@@ -18,7 +18,14 @@ public partial class MultiplayerManager : Node3D
 
     public override void _EnterTree()
     {
-        instance = this;
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            instance.QueueFree();
+        }
     }
 
     // Called when the node enters the scene tree for the first time.

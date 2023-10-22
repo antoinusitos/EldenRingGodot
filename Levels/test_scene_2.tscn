@@ -1,6 +1,62 @@
-[gd_scene format=3 uid="uid://bfcttdqldfbso"]
+[gd_scene load_steps=3 format=3 uid="uid://bfcttdqldfbso"]
+
+[ext_resource type="PackedScene" uid="uid://dt1aqn57sbqco" path="res://Prefabs/wall.tscn" id="1_vyr00"]
+[ext_resource type="PackedScene" uid="uid://bemgpnq0uruwc" path="res://Prefabs/floor.tscn" id="2_ivowx"]
 
 [node name="TestScene2" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11047, 2.95298)
+
+[node name="Cosmetic" type="Node3D" parent="."]
+
+[node name="Floor" parent="Cosmetic" instance=ExtResource("2_ivowx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="Wall" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 2)
+
+[node name="Wall2" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, -3)
+
+[node name="Wall3" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, -8)
+
+[node name="Wall4" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, -13)
+
+[node name="Wall5" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, 2)
+
+[node name="Wall6" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, -3)
+
+[node name="Wall7" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, -8)
+
+[node name="Wall8" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, -13)
+
+[node name="Wall9" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0.5, 4)
+
+[node name="Wall10" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0.5, 4)
+
+[node name="Wall11" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0.5, 4)
+
+[node name="Wall12" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13, 0.5, 4)
+
+[node name="Wall13" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0.5, -15)
+
+[node name="Wall14" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0.5, -15)
+
+[node name="Wall15" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0.5, -15)
+
+[node name="Wall16" parent="Cosmetic" instance=ExtResource("1_vyr00")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13, 0.5, -15)

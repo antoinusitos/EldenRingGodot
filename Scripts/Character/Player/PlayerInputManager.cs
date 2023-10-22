@@ -1,15 +1,15 @@
 using Godot;
 using System;
 
-public partial class WorldSaveGameManager : Node3D
+public partial class PlayerInputManager : Node3D
 {
-	public static WorldSaveGameManager instance = null;
+	public static PlayerInputManager instance = null;
 
     public override void _EnterTree()
     {
-		if(instance == null)
+        if(instance == null)
 		{
-        	instance = this;
+			instance = this;
 		}
 		else
 		{
@@ -26,9 +26,4 @@ public partial class WorldSaveGameManager : Node3D
 	public override void _Process(double delta)
 	{
 	}
-
-	public void LoadNewGame()
-	{
-        MasterLevel.instance.LoadLevel("res://Levels/test_scene_2.tscn");
-    }
 }

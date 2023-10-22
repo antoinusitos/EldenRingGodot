@@ -1,20 +1,13 @@
 using Godot;
 using System;
 
-public partial class WorldSaveGameManager : Node3D
+public partial class PlayerManager : CharacterManager
 {
-	public static WorldSaveGameManager instance = null;
+	private PlayerLocomotionManager playerLocomotionManager = null;
 
     public override void _EnterTree()
     {
-		if(instance == null)
-		{
-        	instance = this;
-		}
-		else
-		{
-			instance.QueueFree();
-		}
+        playerLocomotionManager = GetNode<PlayerLocomotionManager>("./PlayerLocomotionManager");
     }
 
     // Called when the node enters the scene tree for the first time.
@@ -25,10 +18,6 @@ public partial class WorldSaveGameManager : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		playerLocomotionManager.HandleAllMovement();
 	}
-
-	public void LoadNewGame()
-	{
-        MasterLevel.instance.LoadLevel("res://Levels/test_scene_2.tscn");
-    }
 }
