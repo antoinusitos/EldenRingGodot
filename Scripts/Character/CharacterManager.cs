@@ -16,10 +16,20 @@ public partial class CharacterManager : CharacterBody3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-	}
+        if (IsMultiplayerAuthority())
+        {
+            GD.Print("IsMultiplayerAuthority");
+            GD.Print("IsServer ? " + (Multiplayer.IsServer() ? "true" : "false"));
+        }
+		else
+		{
+            GD.Print("IsNOTMultiplayerAuthority");
+            GD.Print("IsServer ? " + (Multiplayer.IsServer() ? "true" : "false"));
+        }
+    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{
 		if(IsMultiplayerAuthority())
 		{

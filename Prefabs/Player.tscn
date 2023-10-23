@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bus3eg080p566"]
+[gd_scene load_steps=7 format=3 uid="uid://bus3eg080p566"]
 
 [ext_resource type="PackedScene" uid="uid://d2a5k2ot2gdra" path="res://Models/Md_Char_Low_Poly_Man.fbx" id="1_fbfpe"]
 [ext_resource type="Script" path="res://Scripts/Character/Player/PlayerManager.cs" id="3_og48p"]
@@ -6,6 +6,16 @@
 [ext_resource type="Script" path="res://Scripts/Character/CharacterNetworkManager.cs" id="4_xwd21"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p4o10"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("CharacterNetworkManager:testVariable")
+properties/1/spawn = true
+properties/1/sync = false
+properties/1/watch = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_assve"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("3_og48p")
@@ -20,3 +30,7 @@ script = ExtResource("4_qknxh")
 
 [node name="CharacterNetworkManager" type="Node3D" parent="."]
 script = ExtResource("4_xwd21")
+
+[node name="TestBox" type="SoftBody3D" parent="."]
+mesh = SubResource("BoxMesh_assve")
+total_mass = 0.01
