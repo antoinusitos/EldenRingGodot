@@ -16,16 +16,7 @@ public partial class CharacterManager : CharacterBody3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        if (IsMultiplayerAuthority())
-        {
-            GD.Print("IsMultiplayerAuthority");
-            GD.Print("IsServer ? " + (Multiplayer.IsServer() ? "true" : "false"));
-        }
-		else
-		{
-            GD.Print("IsNOTMultiplayerAuthority");
-            GD.Print("IsServer ? " + (Multiplayer.IsServer() ? "true" : "false"));
-        }
+        
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,8 +24,18 @@ public partial class CharacterManager : CharacterBody3D
 	{
 		if(IsMultiplayerAuthority())
 		{
-			
-		}
+			characterNetworkManager.UpdateNetworkPosition(Position);
+        }
+		else
+		{
+			Position = Utility.SmoothDamp(
+				Position,
+				characterNetworkManager.networkPosition,
+				ref characterNetworkManager.networkPositionVelocity,
+				characterNetworkManager.networkPositionSmoothTime,
+				Mathf.Inf, 
+				(float)delta);
+        }
     }
 
     public override void _PhysicsProcess(double delta)

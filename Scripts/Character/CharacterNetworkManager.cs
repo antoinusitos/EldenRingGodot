@@ -5,13 +5,10 @@ public partial class CharacterNetworkManager : Node3D
 {
 	public MultiplayerSynchronizer multiplayerSynchronizer = null;
 
-    private int _testVariable = 0;
-
     [Export]
-    public int testVariable { get { return _testVariable; } set { _testVariable = value; GD.Print("_testVariable = " + value); GetNode<SoftBody3D>("../TestBox").Visible = (value == 0 ? true : false); } }
-
-    private bool canDo = true;
-    private float lol = 0;
+    public Vector3 networkPosition = Vector3.Zero;
+    public Vector3 networkPositionVelocity = Vector3.Zero;
+    public float networkPositionSmoothTime = 0.1f;
 
     public override void _EnterTree()
     {
@@ -29,34 +26,11 @@ public partial class CharacterNetworkManager : Node3D
     public override void _Process(double delta)
     {
         base._Process(delta);
-
-        if (!Multiplayer.IsServer() && IsMultiplayerAuthority())
-        {
-            if (!canDo)
-            {
-                return;
-            }
-            lol += (float)delta;
-
-            if (lol > 3)
-            {
-                canDo = false;
-                TestRPC(12);
-            }
-        }
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-    public void TestRPC(int aValue)
+    public void UpdateNetworkPosition(Vector3 value)
     {
-        testVariable = aValue;
-        if (Multiplayer.IsServer())
-        {
-            GD.Print("is server");
-        }
-        else
-        {
-            GD.Print("is not server");
-        }
+        networkPosition = value;
     }
 }
