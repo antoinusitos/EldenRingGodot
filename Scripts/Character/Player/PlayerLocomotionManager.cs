@@ -12,15 +12,22 @@ public partial class PlayerLocomotionManager : CharacterLocomotionManager
 	[Export]
 	private float walkingSpeed = 20;
 	[Export]
-	private float runningSpeed = 50;
+    private float runningSpeed = 50;
+	[Export]
+	private float rotationSpeed = 15;
 
 	private Vector3 moveDirection = Vector3.Zero;
+	private Vector3 targetRotationDirection = Vector3.Zero;
+
+	private Node3D parent = null;
 
     public override void _EnterTree()
     {
         base._EnterTree();
 
 		player = GetNode<PlayerManager>("..");
+
+		parent = ((Node3D)GetParent());
     }
 
     // Called when the node enters the scene tree for the first time.
@@ -36,7 +43,9 @@ public partial class PlayerLocomotionManager : CharacterLocomotionManager
 	public void HandleAllMovement()
 	{
 		HandleGroundedMovement();
-	}
+		HandleRotation();
+
+    }
 
 	private void GetVerticalAndHorizontalInputs()
 	{
@@ -66,4 +75,23 @@ public partial class PlayerLocomotionManager : CharacterLocomotionManager
 			player.MoveAndSlide();
 		}
 	}
+
+	private void HandleRotation()
+	{
+        targetRotationDirection = Vector3.Zero;
+        targetRotationDirection = -PlayerCamera.instance.cameraObject.Transform.Basis.Z * verticalMovement;
+        targetRotationDirection -= PlayerCamera.instance.cameraObject.Transform.Basis.X * horizontalMovement;
+		targetRotationDirection.Normalized();
+		targetRotationDirection.Y = 0;
+
+		if(targetRotationDirection == Vector3.Zero)
+		{
+			targetRotationDirection = parent.Rotation;
+			return;
+		}
+
+		Quaternion newRotation = Transform.LookingAt(targetRotationDirection, Vector3.Up).Basis.GetRotationQuaternion();
+		Quaternion targetRotation = parent.Basis.GetRotationQuaternion().Slerp(newRotation, rotationSpeed * (float)GetProcessDeltaTime());
+        parent.Rotation = targetRotation.GetEuler();
+    }
 }

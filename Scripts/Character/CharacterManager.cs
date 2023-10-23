@@ -25,6 +25,7 @@ public partial class CharacterManager : CharacterBody3D
 		if(IsMultiplayerAuthority())
 		{
 			characterNetworkManager.UpdateNetworkPosition(Position);
+            characterNetworkManager.UpdateNetworkRotation(Transform.Basis.GetRotationQuaternion());
         }
 		else
 		{
@@ -35,16 +36,8 @@ public partial class CharacterManager : CharacterBody3D
 				characterNetworkManager.networkPositionSmoothTime,
 				Mathf.Inf, 
 				(float)delta);
+
+			Rotation = Transform.Basis.GetRotationQuaternion().Slerp(characterNetworkManager.networkRotation, characterNetworkManager.networkRotationSmoothTime).GetEuler();
         }
     }
-
-    public override void _PhysicsProcess(double delta)
-	{
-		/*if(IsMultiplayerAuthority())
-		{
-			Vector2 vec = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * 100;
-			Velocity = new Vector3(vec.X, vec.Y, 0);
-		}
-        MoveAndSlide();*/
-	}
 }

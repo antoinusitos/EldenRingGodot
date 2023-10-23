@@ -5,6 +5,9 @@ public partial class PlayerCamera : Node3D
 {
 	public static PlayerCamera instance = null;
 
+	[Export]
+	public Camera3D cameraObject = null;
+
     public override void _EnterTree()
     {
         if(instance == null)

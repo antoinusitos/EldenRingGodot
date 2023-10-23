@@ -5,9 +5,6 @@
 
 [node name="TestScene2" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11047, 2.95298)
-
 [node name="Cosmetic" type="Node3D" parent="."]
 
 [node name="Floor" parent="Cosmetic" instance=ExtResource("2_ivowx")]
