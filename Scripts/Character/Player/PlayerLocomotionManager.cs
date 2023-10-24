@@ -79,8 +79,8 @@ public partial class PlayerLocomotionManager : CharacterLocomotionManager
 	private void HandleRotation()
 	{
         targetRotationDirection = Vector3.Zero;
-        targetRotationDirection = -PlayerCamera.instance.cameraObject.Transform.Basis.Z * verticalMovement;
-        targetRotationDirection -= PlayerCamera.instance.cameraObject.Transform.Basis.X * horizontalMovement;
+        targetRotationDirection = -PlayerCamera.instance.cameraObject.GlobalTransform.Basis.Z * verticalMovement;
+        targetRotationDirection -= PlayerCamera.instance.cameraObject.GlobalTransform.Basis.X * horizontalMovement;
 		targetRotationDirection.Normalized();
 		targetRotationDirection.Y = 0;
 

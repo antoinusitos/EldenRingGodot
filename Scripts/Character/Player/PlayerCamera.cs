@@ -74,7 +74,7 @@ public partial class PlayerCamera : Node3D
 
 	private void HandleRotations()
 	{
-		leftAndRightLookAngle += (PlayerInputManager.instance.cameraHorizontalInput * leftAndRightRotationSpeed) * (float)GetProcessDeltaTime();
+		leftAndRightLookAngle -= (PlayerInputManager.instance.cameraHorizontalInput * leftAndRightRotationSpeed) * (float)GetProcessDeltaTime();
 		upAndDownLookAngle -= (PlayerInputManager.instance.cameraVerticalInput * upAndDownRotationSpeed) * (float)GetProcessDeltaTime();
 		upAndDownLookAngle = Mathf.Clamp(upAndDownLookAngle, minimumPivot, maximumPivot);
 
