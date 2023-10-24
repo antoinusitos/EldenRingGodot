@@ -17,8 +17,6 @@ public partial class CharacterNetworkManager : Node3D
     public override void _EnterTree()
     {
         base._EnterTree();
-
-        //multiplayerSynchronizer.ReplicationConfig.AddProperty("..:position");
     }
 
     public override void _Ready()

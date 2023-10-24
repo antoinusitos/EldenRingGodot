@@ -75,6 +75,7 @@ public partial class MultiplayerManager : Node3D
         spawnedPlayer2.Name = id.ToString();
         GD.Print("spawnedPlayer " + spawnedPlayer2.Position);
         CallDeferred("add_child", spawnedPlayer2);
+        CallDeferred("OnNetworkSpawned", spawnedPlayer2);
     }
 
     private void PeerDisconnected(long id)
@@ -90,5 +91,10 @@ public partial class MultiplayerManager : Node3D
     private void ConnectionFailed()
     {
         GD.Print("Connection to Server Failed!");
+    }
+
+    private void OnNetworkSpawned(CharacterBody3D player)
+    {
+        ((CharacterManager)player).OnNetworkSpawned();
     }
 }

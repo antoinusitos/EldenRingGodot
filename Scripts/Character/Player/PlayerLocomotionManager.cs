@@ -10,9 +10,9 @@ public partial class PlayerLocomotionManager : CharacterLocomotionManager
 	public float moveAmount = 0;
 
 	[Export]
-	private float walkingSpeed = 20;
+	private float walkingSpeed = 40;
 	[Export]
-    private float runningSpeed = 50;
+    private float runningSpeed = 100;
 	[Export]
 	private float rotationSpeed = 15;
 
