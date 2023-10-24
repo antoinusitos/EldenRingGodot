@@ -6,11 +6,27 @@ public partial class PlayerCamera : Node3D
 	public static PlayerCamera instance = null;
 
 	[Export]
-	public Camera3D cameraObject = null;
+    public Camera3D cameraObject = null;
 	public PlayerManager player = null;
+	[Export]
+	private Node3D cameraPivot = null;
 
-	private Vector3 cameraVelocity = Vector3.Zero;
-	private float cameraSmoothSpeed = 1.0f;
+    //Camera Settings
+    private float cameraSmoothSpeed = 1.0f;
+    [Export]
+    private float leftAndRightRotationSpeed = 220.0f;
+    [Export]
+    private float upAndDownRotationSpeed = 220.0f;
+	[Export]
+    private float minimumPivot = -30;
+    [Export]
+    private float maximumPivot = 60;
+
+    //Camera Values
+    private Vector3 cameraVelocity = Vector3.Zero;
+	[Export]
+	private float leftAndRightLookAngle = 0.0f;
+    private float upAndDownLookAngle = 0.0f;
 
     public override void _EnterTree()
     {
@@ -38,15 +54,12 @@ public partial class PlayerCamera : Node3D
 	{
 		if(player != null)
 		{
-			FollowTarget();
+            HandleFollowTarget();
+			HandleRotations();
         }
-		else
-		{
-			GD.Print("nope");
-		}
 	}
 
-	private void FollowTarget()
+	private void HandleFollowTarget()
 	{
 		Vector3 targetCameraPosition = Utility.SmoothDamp(
 			Position,
@@ -58,4 +71,23 @@ public partial class PlayerCamera : Node3D
 
 		Position = targetCameraPosition;
 	}
+
+	private void HandleRotations()
+	{
+		leftAndRightLookAngle += (PlayerInputManager.instance.cameraHorizontalInput * leftAndRightRotationSpeed) * (float)GetProcessDeltaTime();
+		upAndDownLookAngle -= (PlayerInputManager.instance.cameraVerticalInput * upAndDownRotationSpeed) * (float)GetProcessDeltaTime();
+		upAndDownLookAngle = Mathf.Clamp(upAndDownLookAngle, minimumPivot, maximumPivot);
+
+		Vector3 cameraRotation = Vector3.Zero;
+		Quaternion targetRotation = Quaternion.Identity;
+
+        cameraRotation.Y = Mathf.DegToRad(leftAndRightLookAngle);
+		targetRotation = Quaternion.FromEuler(cameraRotation);
+		Rotation = targetRotation.GetEuler();
+
+        cameraRotation = Vector3.Zero;
+		cameraRotation.X = Mathf.DegToRad(upAndDownLookAngle);
+		targetRotation = Quaternion.FromEuler(cameraRotation);
+		cameraPivot.Rotation = targetRotation.GetEuler();
+    }
 }

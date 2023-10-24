@@ -6,9 +6,13 @@ public partial class PlayerInputManager : Node3D
 	public static PlayerInputManager instance = null;
 
 	private Vector2 movementInput = Vector2.Zero;
-	public float verticalInput = 0;
+    public float verticalInput = 0;
 	public float horizontalInput = 0;
 	public float moveAmount = 0;
+
+    private Vector2 cameraInput = Vector2.Zero;
+    public float cameraVerticalInput = 0;
+    public float cameraHorizontalInput = 0;
 
     public override void _EnterTree()
     {
@@ -30,12 +34,14 @@ public partial class PlayerInputManager : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		movementInput = Input.GetVector("MovementLeft", "MovementRight", "MovementUp", "MovementDown");
+        movementInput = Input.GetVector("MovementLeft", "MovementRight", "MovementUp", "MovementDown");
+        cameraInput = Input.GetVector("CameraLeft", "CameraRight", "CameraUp", "CameraDown");
 
-		HandleMovementInput();
-	}
+        HandlePlayerMovementInput();
+        HandleCameraMovementInput();
+    }
 
-	private void HandleMovementInput()
+    private void HandlePlayerMovementInput()
 	{
 		verticalInput = movementInput.Y;
 		horizontalInput = movementInput.X;
@@ -51,4 +57,10 @@ public partial class PlayerInputManager : Node3D
 			moveAmount = 1.0f;
 		}
 	}
+
+	private void HandleCameraMovementInput()
+	{
+        cameraVerticalInput = cameraInput.Y;
+        cameraHorizontalInput = cameraInput.X;
+    }
 }

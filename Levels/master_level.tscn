@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/World Managers/MasterLevel.cs" id="3_7d6hy"]
 [ext_resource type="PackedScene" uid="uid://db5o5abxwrhqt" path="res://Prefabs/World Managers/world_save_game_manager.tscn" id="4_846hc"]
 [ext_resource type="Script" path="res://Scripts/Character/Player/PlayerInputManager.cs" id="5_6w5rh"]
-[ext_resource type="Script" path="res://Scripts/Character/Player/PlayerCamera.cs" id="6_ncvv2"]
+[ext_resource type="PackedScene" uid="uid://blykl7csgqufe" path="res://Prefabs/player_camera.tscn" id="6_1um1j"]
 
 [node name="MasterLevel" type="Node3D"]
 script = ExtResource("1_pl72x")
@@ -21,12 +21,7 @@ startingLevel = NodePath("../Main_Menu_Level")
 [node name="PlayerInputManager" type="Node3D" parent="DONTDESTROY"]
 script = ExtResource("5_6w5rh")
 
-[node name="PlayerCamera" type="Node3D" parent="DONTDESTROY" node_paths=PackedStringArray("cameraObject")]
-script = ExtResource("6_ncvv2")
-cameraObject = NodePath("Camera3D")
-
-[node name="Camera3D" type="Camera3D" parent="DONTDESTROY/PlayerCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26189, 2.17053)
+[node name="PlayerCamera" parent="DONTDESTROY" instance=ExtResource("6_1um1j")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Prefabs/Player.tscn")

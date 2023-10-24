@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://blykl7csgqufe"]
+
+[ext_resource type="Script" path="res://Scripts/Character/Player/PlayerCamera.cs" id="1_vekhy"]
+
+[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("cameraObject", "cameraPivot")]
+script = ExtResource("1_vekhy")
+cameraObject = NodePath("CameraPivot/Camera3D")
+cameraPivot = NodePath("CameraPivot")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.3)
