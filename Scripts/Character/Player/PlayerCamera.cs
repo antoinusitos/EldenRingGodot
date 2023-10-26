@@ -24,7 +24,7 @@ public partial class PlayerCamera : Node3D
 	[Export]
 	private float cameraCollisionRadius = 0.2f;
 	[Export]
-	private int collideWithLayers = 0;
+	private uint collideWithLayers = 0b00000000_00000000_00000000_00000001;
 
     //Camera Values
     private Vector3 cameraVelocity = Vector3.Zero;
@@ -112,7 +112,8 @@ public partial class PlayerCamera : Node3D
         {
             From = cameraPivot.GlobalPosition,
             To = cameraPivot.GlobalPosition + direction * Mathf.Abs(targetCameraZPosition),
-            Exclude = new Godot.Collections.Array<Rid> { player.GetRid() }
+            Exclude = new Godot.Collections.Array<Rid> { player.GetRid() },
+			CollisionMask = collideWithLayers
         };
         var result2 = spaceState.IntersectRay(physicsRayQueryParameters3D);
 
