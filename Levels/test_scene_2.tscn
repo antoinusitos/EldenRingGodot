@@ -57,3 +57,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0.5
 
 [node name="Wall16" parent="Cosmetic" instance=ExtResource("1_vyr00")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13, 0.5, -15)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Cosmetic"]
+transform = Transform3D(1, 0, 0, 0, 0.819092, 0.573662, 0, -0.573662, 0.819092, 0, 0, 0)
