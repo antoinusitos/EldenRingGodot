@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PressStartButton : Button
+public partial class PressStartButton : MenuButton
 {
     [Export]
     private Panel TitleScreenMainMenuPanel = null;

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class JoinGameButton : Button
+public partial class JoinGameButton : MenuButton
 {
     [Export]
     private Control UIRoot = null;
