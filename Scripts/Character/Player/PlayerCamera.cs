@@ -18,15 +18,22 @@ public partial class PlayerCamera : Node3D
     [Export]
     private float upAndDownRotationSpeed = 220.0f;
 	[Export]
-    private float minimumPivot = -30;
+    private float minimumPivot = -60;
     [Export]
-    private float maximumPivot = 60;
+    private float maximumPivot = 30;
+	[Export]
+	private float cameraCollisionRadius = 0.2f;
+	[Export]
+	private int collideWithLayers = 0;
 
     //Camera Values
     private Vector3 cameraVelocity = Vector3.Zero;
+	private Vector3 cameraObjectPosition = Vector3.Zero;
 	[Export]
 	private float leftAndRightLookAngle = 0.0f;
     private float upAndDownLookAngle = 0.0f;
+	private float CameraZPosition = 0.0f;
+    private float targetCameraZPosition = 0.0f;
 
     public override void _EnterTree()
     {
@@ -43,7 +50,8 @@ public partial class PlayerCamera : Node3D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-	}
+		CameraZPosition = cameraObject.Position.Z;
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -56,6 +64,7 @@ public partial class PlayerCamera : Node3D
 		{
             HandleFollowTarget();
 			HandleRotations();
+			HandleCollisions();
         }
 	}
 
@@ -89,5 +98,38 @@ public partial class PlayerCamera : Node3D
 		cameraRotation.X = Mathf.DegToRad(upAndDownLookAngle);
 		targetRotation = Quaternion.FromEuler(cameraRotation);
 		cameraPivot.Rotation = targetRotation.GetEuler();
+    }
+
+	private void HandleCollisions()
+	{
+        targetCameraZPosition = CameraZPosition;
+
+        Vector3 direction = cameraObject.GlobalPosition - cameraPivot.GlobalPosition;
+        direction = direction.Normalized();
+
+        var spaceState = GetWorld3D().DirectSpaceState;
+        PhysicsRayQueryParameters3D physicsRayQueryParameters3D = new PhysicsRayQueryParameters3D()
+        {
+            From = cameraPivot.GlobalPosition,
+            To = cameraPivot.GlobalPosition + direction * Mathf.Abs(targetCameraZPosition),
+            Exclude = new Godot.Collections.Array<Rid> { player.GetRid() }
+        };
+        var result2 = spaceState.IntersectRay(physicsRayQueryParameters3D);
+
+        if (result2.Count > 0)
+        {
+            Vector3 point = (Vector3)result2["position"];
+
+            float distanceFromHitObject = cameraPivot.GlobalPosition.DistanceTo(point);
+            targetCameraZPosition = (distanceFromHitObject - cameraCollisionRadius);
+        }
+
+        if (Mathf.Abs(targetCameraZPosition) < cameraCollisionRadius)
+        {
+            targetCameraZPosition = cameraCollisionRadius;
+        }
+
+        cameraObjectPosition.Z = Mathf.Lerp(cameraObject.Position.Z, targetCameraZPosition, 0.2f);
+        cameraObject.Position = cameraObjectPosition;
     }
 }
