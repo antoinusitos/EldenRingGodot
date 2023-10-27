@@ -7,4 +7,7 @@
 
 [node name="TitleScreen" parent="." instance=ExtResource("1_2wujx")]
 
-[node name="TitleScreenManager" parent="." instance=ExtResource("2_luqn6")]
+[node name="TitleScreenManager" parent="." node_paths=PackedStringArray("StartNewGameButton") instance=ExtResource("2_luqn6")]
+StartNewGameButton = NodePath("../TitleScreen/TitleScreenMainMenu/NewGameButton")
+
+[editable path="TitleScreen"]

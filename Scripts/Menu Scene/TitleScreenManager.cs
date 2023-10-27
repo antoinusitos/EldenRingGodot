@@ -5,6 +5,9 @@ public partial class TitleScreenManager : Node
 {
     public static TitleScreenManager instance = null;
 
+	[Export]
+	public MenuButton StartNewGameButton = null;
+
     public override void _EnterTree()
     {
         instance = this;

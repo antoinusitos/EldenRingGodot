@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://5owlr31kmngg"]
+[gd_scene load_steps=11 format=3 uid="uid://5owlr31kmngg"]
 
 [ext_resource type="Script" path="res://Scripts/Menu Scene/Main Menu/PressStartButton.cs" id="1_hlbdq"]
 [ext_resource type="Script" path="res://Scripts/Menu Scene/Main Menu/JoinGameButton.cs" id="2_11qqg"]
@@ -13,10 +13,15 @@ gradient = SubResource("Gradient_owhwm")
 [sub_resource type="LabelSettings" id="LabelSettings_dbgcg"]
 font_size = 110
 
-[sub_resource type="Theme" id="Theme_bn1is"]
+[sub_resource type="Theme" id="Theme_6p7v2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aboji"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_885m4"]
 bg_color = Color(0.231373, 0.231373, 0.231373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc3gr"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_bn1is"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -63,10 +68,12 @@ offset_right = 93.0
 offset_bottom = -116.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_bn1is")
-theme_override_styles/normal = SubResource("StyleBoxFlat_aboji")
+theme = SubResource("Theme_6p7v2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_885m4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bc3gr")
 script = ExtResource("1_hlbdq")
 TitleScreenMainMenuPanel = NodePath("../TitleScreenMainMenu")
+setStartingActiveButton = true
 
 [node name="Label" type="Label" parent="PressStartButton"]
 layout_mode = 1
@@ -76,35 +83,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "PRESS START"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="JoinGameButton" type="Button" parent="." node_paths=PackedStringArray("UIRoot")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -92.0
-offset_top = -90.865
-offset_right = 93.0
-offset_bottom = -58.8649
-grow_horizontal = 2
-grow_vertical = 0
-theme = SubResource("Theme_bn1is")
-theme_override_styles/normal = SubResource("StyleBoxFlat_aboji")
-script = ExtResource("2_11qqg")
-UIRoot = NodePath("..")
-
-[node name="Label" type="Label" parent="JoinGameButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Join Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -125,8 +103,10 @@ offset_right = 669.0
 offset_bottom = 532.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_bottom = NodePath("../JoinGameButton")
 theme = SubResource("Theme_bn1is")
-theme_override_styles/normal = SubResource("StyleBoxFlat_aboji")
+theme_override_styles/normal = SubResource("StyleBoxFlat_885m4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bc3gr")
 script = ExtResource("2_uvsus")
 UIRoot = NodePath("../..")
 
@@ -138,5 +118,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="TitleScreenMainMenu" node_paths=PackedStringArray("UIRoot")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 484.0
+offset_top = 557.135
+offset_right = 669.0
+offset_bottom = 589.135
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../NewGameButton")
+theme = SubResource("Theme_bn1is")
+theme_override_styles/normal = SubResource("StyleBoxFlat_885m4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bc3gr")
+script = ExtResource("2_11qqg")
+UIRoot = NodePath("../..")
+
+[node name="Label" type="Label" parent="TitleScreenMainMenu/JoinGameButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Join Game"
 horizontal_alignment = 1
 vertical_alignment = 1

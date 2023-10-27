@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2qcx4noq135f"]
+[gd_scene load_steps=9 format=3 uid="uid://c2qcx4noq135f"]
 
 [ext_resource type="Script" path="res://Scripts/World Managers/MultiplayerManager.cs" id="1_pl72x"]
 [ext_resource type="PackedScene" uid="uid://dqh8rrhsgacdu" path="res://Levels/Main_Menu_Level.tscn" id="1_spqx8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://db5o5abxwrhqt" path="res://Prefabs/World Managers/world_save_game_manager.tscn" id="4_846hc"]
 [ext_resource type="Script" path="res://Scripts/Character/Player/PlayerInputManager.cs" id="5_6w5rh"]
 [ext_resource type="PackedScene" uid="uid://blykl7csgqufe" path="res://Prefabs/player_camera.tscn" id="6_1um1j"]
+[ext_resource type="Script" path="res://Scripts/Menu Scene/MenuButtonGamepadManager.cs" id="7_nkias"]
 
 [node name="MasterLevel" type="Node3D"]
 script = ExtResource("1_pl72x")
@@ -22,6 +23,9 @@ startingLevel = NodePath("../Main_Menu_Level")
 script = ExtResource("5_6w5rh")
 
 [node name="PlayerCamera" parent="DONTDESTROY" instance=ExtResource("6_1um1j")]
+
+[node name="MenuButtonGamepadManager" type="Node3D" parent="DONTDESTROY"]
+script = ExtResource("7_nkias")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Prefabs/Player.tscn")

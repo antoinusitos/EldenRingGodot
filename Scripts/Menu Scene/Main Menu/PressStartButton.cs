@@ -8,7 +8,8 @@ public partial class PressStartButton : MenuButton
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-	{
+    {
+        base._Ready();
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,5 +22,6 @@ public partial class PressStartButton : MenuButton
 		MultiplayerManager.instance.StartNetworkAsHost();
 		Visible = false;
 		TitleScreenMainMenuPanel.Visible = true;
+        MenuButtonGamepadManager.instance.SetActiveButton(TitleScreenManager.instance.StartNewGameButton);
     }
 }
