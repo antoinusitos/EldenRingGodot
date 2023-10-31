@@ -20,6 +20,9 @@ public partial class CharacterAnimationManager : Node
 
     public void UpdateAnimatorMovementParameters(float horizontalValue, float verticalValue)
 	{
+        if(character  == null) return;
+        if (character.animator == null) return;
+
         Vector2 animationTransition = (Vector2)character.animator.Get("parameters/BlendSpaceMovement/blend_position");
         float v = 0;
         float xValue = Utility.SmoothDamp(animationTransition.X, horizontalValue, ref v, 0.1f, Mathf.Inf, (float)GetProcessDeltaTime());
