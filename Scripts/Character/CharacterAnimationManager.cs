@@ -3,6 +3,9 @@ using System;
 
 public partial class CharacterAnimationManager : Node
 {
+    [Export]
+    public AnimationTree animationTree = null;
+
 	private CharacterManager character = null;
 
     private float vertical = 0.0f;

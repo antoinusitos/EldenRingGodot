@@ -93,4 +93,6 @@ public static class Utility
 
         return new Vector3(output_X, output_Y, output_Z);
     }
+
+    public static Vector3 DivideVector3ByFloat(Vector3 vector, float deltaTime) { return new Vector3(vector.X / deltaTime, vector.Y / deltaTime, vector.Z / deltaTime); }
 }

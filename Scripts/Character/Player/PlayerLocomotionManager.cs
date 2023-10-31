@@ -81,17 +81,13 @@ public partial class PlayerLocomotionManager : CharacterLocomotionManager
 		moveDirection.Normalized();
 		moveDirection.Y = 0;
 
-		if(PlayerInputManager.instance.moveAmount > 0.5f)
-		{
-			player.Velocity = moveDirection * runningSpeed * (float)GetProcessDeltaTime();
-			player.MoveAndSlide();
-		}
-		else if(PlayerInputManager.instance.moveAmount <= 0.5f)
-		{
-			player.Velocity = moveDirection * walkingSpeed * (float)GetProcessDeltaTime();
-			player.MoveAndSlide();
-		}
-	}
+		Quaternion parentRotation = Quaternion.FromEuler(parent.Rotation);
+
+		float multiplier = PlayerInputManager.instance.moveAmount > 0.5f ? 1 : 0.5f;
+
+        player.Velocity = Utility.DivideVector3ByFloat((parentRotation.Normalized() * player.playerAnimatorManager.animationTree.GetRootMotionPosition()) * multiplier, (float)GetProcessDeltaTime()) ;
+        player.MoveAndSlide();
+    }
 
 	private void HandleRotation()
 	{
