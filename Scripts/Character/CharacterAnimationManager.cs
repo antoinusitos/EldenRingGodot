@@ -5,6 +5,9 @@ public partial class CharacterAnimationManager : Node
 {
 	private CharacterManager character = null;
 
+    private float vertical = 0.0f;
+    private float horizontal = 0.0f;
+
     public override void _EnterTree()
     {
         base._EnterTree();

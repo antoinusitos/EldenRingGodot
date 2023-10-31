@@ -14,6 +14,13 @@ public partial class CharacterNetworkManager : Node3D
     public Quaternion networkRotation = Quaternion.Identity;
     public float networkRotationSmoothTime = 0.1f;
 
+    [Export]
+    public float verticalMovement = 0.0f;
+    [Export]
+    public float horizontalMovement = 0.0f;
+    [Export]
+    public float moveAmount = 0.0f;
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -40,5 +47,23 @@ public partial class CharacterNetworkManager : Node3D
     public void UpdateNetworkRotation(Quaternion value)
     {
         networkRotation = value;
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+    public void UpdateVerticalMovement(float value)
+    {
+        verticalMovement = value;
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+    public void UpdateHorizontalMovement(float value)
+    {
+        horizontalMovement = value;
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+    public void UpdateMoveAmount(float value)
+    {
+        moveAmount = value;
     }
 }

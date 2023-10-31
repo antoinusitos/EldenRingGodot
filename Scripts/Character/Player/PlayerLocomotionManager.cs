@@ -33,29 +33,46 @@ public partial class PlayerLocomotionManager : CharacterLocomotionManager
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+		base._Ready();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-	}
+		base._Process(delta);
 
-	public void HandleAllMovement()
+        if (player.IsMultiplayerAuthority())
+        {
+            player.characterNetworkManager.UpdateVerticalMovement(verticalMovement);
+            player.characterNetworkManager.UpdateHorizontalMovement(horizontalMovement);
+            player.characterNetworkManager.UpdateMoveAmount(moveAmount);
+        }
+        else
+        {
+            verticalMovement = player.characterNetworkManager.verticalMovement;
+            horizontalMovement = player.characterNetworkManager.horizontalMovement;
+            moveAmount = player.characterNetworkManager.moveAmount;
+
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+        }
+    }
+
+    public void HandleAllMovement()
 	{
 		HandleGroundedMovement();
 		HandleRotation();
-
     }
 
-	private void GetVerticalAndHorizontalInputs()
+	private void GetMovementValues()
 	{
 		verticalMovement = PlayerInputManager.instance.verticalInput;
 		horizontalMovement = PlayerInputManager.instance.horizontalInput;
+		moveAmount = PlayerInputManager.instance.moveAmount;
 	}
 
 	private void HandleGroundedMovement()
 	{
-		GetVerticalAndHorizontalInputs();
+        GetMovementValues();
 
 		// We get the forward vector of the camera
 		moveDirection = PlayerCamera.instance.GlobalTransform.Basis.Z * verticalMovement;

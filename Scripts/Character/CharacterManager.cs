@@ -5,7 +5,7 @@ public partial class CharacterManager : CharacterBody3D, INetworkInterface
 {
 	public AnimationTree animator = null;
 
-	private CharacterNetworkManager characterNetworkManager = null;
+	public CharacterNetworkManager characterNetworkManager = null;
 
 	public override void _EnterTree()
 	{
