@@ -16,11 +16,15 @@ public partial class MultiplayerManager : Node3D
     [Export]
     private PackedScene playerPrefab = null;
 
+    [Export]
+    private MultiplayerSpawner multiplayerSpawner = null;
+
     public override void _EnterTree()
     {
         if(instance == null)
         {
             instance = this;
+            multiplayerSpawner.Spawned += OnSpawn;
         }
         else
         {
@@ -40,6 +44,15 @@ public partial class MultiplayerManager : Node3D
     public override void _Process(double delta)
 	{
 	}
+
+    public void OnSpawn(Node node)
+    {
+        INetworkInterface networkObject = (INetworkInterface)node;
+        if(networkObject != null)
+        {
+            networkObject.OnNetworkSpawned();
+        }
+    }
 
     public void StartNetworkAsHost()
     {
@@ -86,6 +99,7 @@ public partial class MultiplayerManager : Node3D
     private void ConnectedToServer()
     {
         GD.Print("Connected to Server !");
+        //OnNetworkSpawned(GetNode<CharacterManager>(peer.GetUniqueId().ToString()));
     }
 
     private void ConnectionFailed()
@@ -95,6 +109,6 @@ public partial class MultiplayerManager : Node3D
 
     private void OnNetworkSpawned(CharacterBody3D player)
     {
-        ((CharacterManager)player).OnNetworkSpawned();
+        ((INetworkInterface)player).OnNetworkSpawned();
     }
 }

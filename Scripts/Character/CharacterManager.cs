@@ -1,8 +1,10 @@
 using Godot;
 using System;
 
-public partial class CharacterManager : CharacterBody3D
+public partial class CharacterManager : CharacterBody3D, INetworkInterface
 {
+	public AnimationTree animator = null;
+
 	private CharacterNetworkManager characterNetworkManager = null;
 
 	public override void _EnterTree()
@@ -10,7 +12,9 @@ public partial class CharacterManager : CharacterBody3D
 		SetMultiplayerAuthority(int.Parse(Name));
 
 		characterNetworkManager = GetNode<CharacterNetworkManager>("CharacterNetworkManager");
-	}
+		animator = GetNode<AnimationTree>("./CharacterModel/AnimationTree");
+
+    }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -42,7 +46,7 @@ public partial class CharacterManager : CharacterBody3D
 		CallDeferred("LateUpdate");
 	}
 
-	public virtual void OnNetworkSpawned()
+	void INetworkInterface.OnNetworkSpawned()
 	{
 	}
 

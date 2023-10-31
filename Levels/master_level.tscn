@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://blykl7csgqufe" path="res://Prefabs/player_camera.tscn" id="6_1um1j"]
 [ext_resource type="Script" path="res://Scripts/Menu Scene/MenuButtonGamepadManager.cs" id="7_nkias"]
 
-[node name="MasterLevel" type="Node3D"]
+[node name="MasterLevel" type="Node3D" node_paths=PackedStringArray("multiplayerSpawner")]
 script = ExtResource("1_pl72x")
 playerPrefab = ExtResource("2_cxros")
+multiplayerSpawner = NodePath("MultiplayerSpawner")
 
 [node name="DONTDESTROY" type="Node3D" parent="." node_paths=PackedStringArray("startingLevel")]
 script = ExtResource("3_7d6hy")

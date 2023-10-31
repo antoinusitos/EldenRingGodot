@@ -4,6 +4,7 @@ using System;
 public partial class PlayerInputManager : Node3D
 {
 	public static PlayerInputManager instance = null;
+	public PlayerManager player = null;
 
 	private Vector2 movementInput = Vector2.Zero;
     public float verticalInput = 0;
@@ -55,6 +56,11 @@ public partial class PlayerInputManager : Node3D
 		else if(moveAmount >= 0.5f && moveAmount <= 1)
 		{
 			moveAmount = 1.0f;
+		}
+
+		if(player != null)
+		{
+			player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
 		}
 	}
 

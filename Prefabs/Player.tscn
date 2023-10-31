@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bus3eg080p566"]
+[gd_scene load_steps=9 format=3 uid="uid://bus3eg080p566"]
 
 [ext_resource type="PackedScene" uid="uid://d2a5k2ot2gdra" path="res://Models/Md_Char_Low_Poly_Man.fbx" id="1_fbfpe"]
 [ext_resource type="Script" path="res://Scripts/Character/Player/PlayerManager.cs" id="3_og48p"]
 [ext_resource type="Script" path="res://Scripts/Character/Player/PlayerLocomotionManager.cs" id="4_qknxh"]
 [ext_resource type="Script" path="res://Scripts/Character/CharacterNetworkManager.cs" id="4_xwd21"]
+[ext_resource type="Script" path="res://Scripts/Character/Player/PlayerAnimatorManager.cs" id="5_fwexq"]
+[ext_resource type="PackedScene" uid="uid://c7ji4vmit0iyh" path="res://Prefabs/CharacterModel.tscn" id="5_yg8yj"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p4o10"]
 properties/0/path = NodePath("CharacterNetworkManager:networkPosition")
@@ -23,6 +25,7 @@ height = 1.86141
 script = ExtResource("3_og48p")
 
 [node name="Md_Char_Low_Poly_Man" parent="." instance=ExtResource("1_fbfpe")]
+visible = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_p4o10")
@@ -33,6 +36,36 @@ script = ExtResource("4_qknxh")
 [node name="CharacterNetworkManager" type="Node3D" parent="."]
 script = ExtResource("4_xwd21")
 
+[node name="PlayerAnimatorManager" type="Node3D" parent="."]
+script = ExtResource("5_fwexq")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93, 0)
 shape = SubResource("CapsuleShape3D_05cby")
+
+[node name="CharacterModel" parent="." instance=ExtResource("5_yg8yj")]
+
+[node name="Skeleton3D" parent="CharacterModel/Armature_010" index="0"]
+bones/1/rotation = Quaternion(-0.0303863, -0.0493372, -0.0283247, 0.997918)
+bones/2/rotation = Quaternion(-0.0304369, 0.0138009, 0.023209, 0.999172)
+bones/3/rotation = Quaternion(0.0108512, 0.00235462, 0.0142652, 0.999837)
+bones/4/rotation = Quaternion(0.0678311, 0.0031789, 0.0139559, 0.997594)
+bones/5/rotation = Quaternion(0.0517114, -0.00179827, 0.00429496, 0.998651)
+bones/6/rotation = Quaternion(-0.0710873, 0.00905271, -0.00137766, 0.997428)
+bones/8/rotation = Quaternion(-0.597055, -0.435903, 0.508729, -0.441258)
+bones/9/rotation = Quaternion(0.544047, 0.180056, 0.205307, 0.793374)
+bones/10/rotation = Quaternion(4.84604e-07, 2.00462e-08, 0.0130408, 0.999915)
+bones/11/rotation = Quaternion(0.0466865, -0.282394, 0.0267096, 0.957789)
+bones/32/rotation = Quaternion(0.601966, -0.432715, 0.524646, 0.418499)
+bones/33/rotation = Quaternion(0.465257, -0.262555, -0.229727, 0.813527)
+bones/34/rotation = Quaternion(3.75461e-07, 2.61987e-08, -0.0580491, 0.998314)
+bones/35/rotation = Quaternion(0.0578217, 0.1767, -0.00508174, 0.982552)
+bones/56/rotation = Quaternion(0.13833, 0.075667, 0.984304, -0.0792776)
+bones/57/rotation = Quaternion(-0.131812, -0.0149494, 0.0318759, 0.990649)
+bones/58/rotation = Quaternion(0.534639, -0.0222332, -0.0281873, 0.844317)
+bones/61/rotation = Quaternion(-0.090375, -0.0205898, 0.995328, -0.02703)
+bones/62/rotation = Quaternion(-0.0694128, 0.0842935, -0.0242128, 0.993725)
+bones/63/rotation = Quaternion(0.56599, 0.00809744, -0.00703773, 0.824343)
+bones/64/rotation = Quaternion(0.287715, 0.0318972, 0.0141067, 0.957081)
+
+[editable path="CharacterModel"]

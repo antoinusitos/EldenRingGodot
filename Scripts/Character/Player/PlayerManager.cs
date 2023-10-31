@@ -1,10 +1,11 @@
 using Godot;
 using System;
 
-public partial class PlayerManager : CharacterManager
+public partial class PlayerManager : CharacterManager, INetworkInterface
 {
-	private PlayerLocomotionManager playerLocomotionManager = null;
-
+    public PlayerLocomotionManager playerLocomotionManager = null;
+    [Export]
+    public PlayerAnimatorManager playerAnimatorManager = null;
 	public MultiplayerSpawner multiplayerSpawner = null;
 
     public override void _EnterTree()
@@ -12,6 +13,7 @@ public partial class PlayerManager : CharacterManager
 		base._EnterTree();
 
         playerLocomotionManager = GetNode<PlayerLocomotionManager>("./PlayerLocomotionManager");
+        playerAnimatorManager = GetNode<PlayerAnimatorManager>("./PlayerAnimatorManager");
     }
 
     // Called when the node enters the scene tree for the first time.
@@ -33,11 +35,9 @@ public partial class PlayerManager : CharacterManager
 		playerLocomotionManager.HandleAllMovement();
     }
 
-	public override void OnNetworkSpawned()
+	void INetworkInterface.OnNetworkSpawned()
 	{
-		base.OnNetworkSpawned();
-
-        if(!IsInsideTree())
+        if (!IsInsideTree())
         {
             return;
         }
@@ -45,6 +45,7 @@ public partial class PlayerManager : CharacterManager
         if (IsMultiplayerAuthority())
         {
 			PlayerCamera.instance.player = this;
+            PlayerInputManager.instance.player = this;
         }
     }
 
